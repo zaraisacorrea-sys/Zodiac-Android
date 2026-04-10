@@ -8,28 +8,36 @@ import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintSet
 import androidx.recyclerview.widget.RecyclerView
 
-class HoroscopeAdapter (val items:List<Horoscope>): RecyclerView.Adapter<HoroscopeViewHolder>(){
-    //cuales son los datos a mostrar
+class HoroscopeAdapter(val items: List<Horoscope>,val onItemClick:(Int)-> Unit) : RecyclerView.Adapter<HoroscopeViewHolder>() {
+
+    // Cual es la vista para los elementos
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HoroscopeViewHolder {
-        val view= LayoutInflater.from(parent.context).inflate(R.layout.item_horoscope,parent,false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_horoscope, parent, false)
         return HoroscopeViewHolder(view)
     }
-    //cual es la vista para los elementos
-    override fun onBindViewHolder(holder: HoroscopeViewHolder, position: Int) {
-     val horoscope=items[position]
-        holder.render(horoscope)
-    }
-    //cuantos elementos mostrar
-    override fun getItemCount(): Int {
-       return items.size
-    }
-}
-class HoroscopeViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
-    val signImageView: ImageView=itemView.findViewById(R.id.signImageView)
-    val nameTextView: TextView=itemView.findViewById(R.id.nameTextView)
-    val datesTextView: TextView=itemView.findViewById(R.id.datesTextView)
 
-    fun render (horoscope: Horoscope){
+    // Cual son los datos a mostrar para el elemento en la posicion
+    override fun onBindViewHolder(holder: HoroscopeViewHolder, position: Int) {
+        val horoscope = items[position]
+        holder.render(horoscope)
+        holder.itemView.setOnClickListener {
+            onItemClick(position)
+        }
+    }
+
+    // Cuantos elementos tengo que mostrar
+    override fun getItemCount(): Int {
+        return items.size
+    }
+
+}
+
+class HoroscopeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    val signImageView: ImageView = itemView.findViewById(R.id.signImageView)
+    val nameTextView: TextView = itemView.findViewById(R.id.nameTextView)
+    val datesTextView: TextView = itemView.findViewById(R.id.datesTextView)
+
+    fun render(horoscope: Horoscope) {
         nameTextView.setText(horoscope.name)
         datesTextView.setText(horoscope.dates)
         signImageView.setImageResource(horoscope.image)

@@ -11,28 +11,28 @@
         android:layout_width="86dp"
         android:layout_height="86dp"
         android:src="@drawable/aries_icon" />
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="vertical"
         android:layout_gravity="center_vertical"
-        android:layout_marginStart="8dp"
-        android:orientation="vertical" />
+        android:layout_marginStart="8dp">
 
-    <TextView
-        android:id="@+id/nameTextView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:text="Horoscope name"
-        android:text="Horoscope name"
-        android:textSize="24sp"
-        android:textStyle="bold" />
+        <TextView
+            android:id="@+id/nameTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="Horoscope name"
+            android:textSize="24sp"
+            android:textStyle="bold"/>
 
-    <TextView
-        android:id="@+id/datesTextView"
-        android:layout_width="match_parent"
-        tools:text="Horoscope dates"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="Horoscope dates" />
+        <TextView
+            android:id="@+id/datesTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="Horoscope dates"
+            android:layout_marginTop="8dp"/>
+
+    </LinearLayout>
+
 </LinearLayout>
