@@ -5,6 +5,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.recyclerview.widget.LinearLayoutManager
 
 class MainActivity : AppCompatActivity() {
     val horoscopeList: List<Horoscope> = listOf(
@@ -21,6 +22,7 @@ class MainActivity : AppCompatActivity() {
         Horoscope("aquarius", R.string.horoscope_name_aquarius, R.string.horoscope_date_aquarius, R.drawable.aquarius_icon),
         Horoscope("pisces", R.string.horoscope_name_pisces, R.string.horoscope_date_pisces, R.drawable.pisces_icon)
     )
+    lateinit var recycleView: RecyclerView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,5 +33,11 @@ class MainActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
+        recyclerView=findViewById(R.id.recyclerView)
+
+        val adapter= HoroscopeAdapter(horoscopeList)
+        recycleView.adapter= adapter
+        recycleView.layoutManager= LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false)
     }
 }
