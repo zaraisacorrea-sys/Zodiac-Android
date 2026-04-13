@@ -33,13 +33,13 @@ class HoroscopeAdapter(val items: List<Horoscope>,val onItemClick:(Int)-> Unit) 
 }
 
 class HoroscopeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-    val signImageView: ImageView = itemView.findViewById(R.id.signImageView)
     val nameTextView: TextView = itemView.findViewById(R.id.nameTextView)
     val datesTextView: TextView = itemView.findViewById(R.id.datesTextView)
+    val iconImageView: ImageView = itemView.findViewById(R.id.iconImageView)
 
     fun render(horoscope: Horoscope) {
         nameTextView.setText(horoscope.name)
         datesTextView.setText(horoscope.dates)
-        signImageView.setImageResource(horoscope.image)
+        iconImageView.setImageResource(horoscope.sign)
     }
 }

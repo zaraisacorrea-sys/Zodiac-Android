@@ -11,8 +11,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
 class MainActivity : AppCompatActivity() {
-    val horoscopeList: List<Horoscope> = Horoscope.horoscopeList
+    val horoscopeList: List<Horoscope> = Horoscope.getAll()
     lateinit var recyclerView: RecyclerView
+
+    lateinit var adapter: HoroscopeAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
