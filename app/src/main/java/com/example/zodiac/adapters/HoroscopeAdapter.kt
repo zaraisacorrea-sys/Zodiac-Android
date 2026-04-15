@@ -5,9 +5,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.view.menu.MenuView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.zodiac.R
 import com.example.zodiac.data.Horoscope
+import com.example.zodiac.utils.SessionManager
 
 class HoroscopeAdapter(var items: List<Horoscope>, val onItemClick:(Int)-> Unit) : RecyclerView.Adapter<HoroscopeViewHolder>() {
 
@@ -40,10 +42,17 @@ class HoroscopeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     val nameTextView: TextView = itemView.findViewById(R.id.nameTextView)
     val datesTextView: TextView = itemView.findViewById(R.id.datesTextView)
     val signImageView: ImageView = itemView.findViewById(R.id.signImageView)
+    val favoriteImageView: ImageView= itemView.findViewById(R.id.favoriteImageView)
 
     fun render(horoscope: Horoscope) {
         nameTextView.setText(horoscope.name)
         datesTextView.setText(horoscope.dates)
         signImageView.setImageResource(horoscope.image)
+
+        if(SessionManager(itemView.context).isFavoriteHoroscope(horoscope.id)){
+            favoriteImageView.visibility= View.VISIBLE
+        }else{
+            favoriteImageView.visibility= View.GONE
+        }
     }
 }

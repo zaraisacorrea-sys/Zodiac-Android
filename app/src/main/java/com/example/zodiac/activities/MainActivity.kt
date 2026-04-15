@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.zodiac.data.Horoscope
 import com.example.zodiac.adapters.HoroscopeAdapter
 import com.example.zodiac.R
+import com.example.zodiac.utils.search
 
 class MainActivity : AppCompatActivity() {
 
@@ -44,6 +45,12 @@ class MainActivity : AppCompatActivity() {
         recyclerView.layoutManager = LinearLayoutManager(this)
     }
 
+    override fun onResume() {
+        super.onResume()
+
+        adapter.updateData(horoscopeList)
+    }
+
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.activity_main, menu)
 
@@ -56,9 +63,9 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onQueryTextChange(newText: String): Boolean {
-                horoscopeList= Horoscope.Companion.horoscopeList.filter {
-                    getString(it.name).contains(newText,true)
-                            || getString(it.name).contains(newText,true)
+                horoscopeList = Horoscope.Companion.horoscopeList.filter {
+                    getString(it.name).search(newText)
+                            || getString(it.dates).search(newText)
                 }
                 adapter.updateData(horoscopeList)
                 return true
