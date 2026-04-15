@@ -1,14 +1,15 @@
-package com.example.zodiac
+package com.example.zodiac.adapters
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.constraintlayout.widget.ConstraintSet
 import androidx.recyclerview.widget.RecyclerView
+import com.example.zodiac.R
+import com.example.zodiac.data.Horoscope
 
-class HoroscopeAdapter(val items: List<Horoscope>,val onItemClick:(Int)-> Unit) : RecyclerView.Adapter<HoroscopeViewHolder>() {
+class HoroscopeAdapter(var items: List<Horoscope>, val onItemClick:(Int)-> Unit) : RecyclerView.Adapter<HoroscopeViewHolder>() {
 
     // Cual es la vista para los elementos
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HoroscopeViewHolder {
@@ -29,17 +30,20 @@ class HoroscopeAdapter(val items: List<Horoscope>,val onItemClick:(Int)-> Unit) 
     override fun getItemCount(): Int {
         return items.size
     }
-
+    fun updateData(dataSet:List<Horoscope>){
+        items=dataSet
+        notifyDataSetChanged()
+    }
 }
 
 class HoroscopeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     val nameTextView: TextView = itemView.findViewById(R.id.nameTextView)
     val datesTextView: TextView = itemView.findViewById(R.id.datesTextView)
-    val iconImageView: ImageView = itemView.findViewById(R.id.iconImageView)
+    val signImageView: ImageView = itemView.findViewById(R.id.signImageView)
 
     fun render(horoscope: Horoscope) {
         nameTextView.setText(horoscope.name)
         datesTextView.setText(horoscope.dates)
-        iconImageView.setImageResource(horoscope.sign)
+        signImageView.setImageResource(horoscope.image)
     }
 }
